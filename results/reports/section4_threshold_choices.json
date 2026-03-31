@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-03-31 18:47:43",
+  "oof_pr_auc": 0.05740740740740741,
+  "oof_roc_auc": 0.7786774628879891,
+  "choices": {
+    "screening_high_recall": {
+      "threshold": 0.006,
+      "f1": 0.0594059405940594,
+      "precision": 0.030612244897959183,
+      "recall": 1.0,
+      "predicted_positives": 98.0
+    },
+    "balanced_best_f1": {
+      "threshold": 0.113,
+      "f1": 0.16666666666666666,
+      "precision": 0.1111111111111111,
+      "recall": 0.3333333333333333,
+      "predicted_positives": 9.0
+    },
+    "confirmatory_high_precision": {
+      "threshold": 0.113,
+      "f1": 0.16666666666666666,
+      "precision": 0.1111111111111111,
+      "recall": 0.3333333333333333,
+      "predicted_positives": 9.0
+    }
+  }
+}
