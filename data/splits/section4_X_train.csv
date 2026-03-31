@@ -1,0 +1,201 @@
+Age,Gender,State,Country,Settlement_Type,Recent_Travel_30D,Rodent_Contact_6M,Food_Open_Storage,Rodents_Droppings_home,Participated_in_Survey,Hopital_Visits_30D,Contact_Confirmed_Case,LASV_Mortality,Community_lassa_awareness,clinical_symptoms.Fever,clinical_symptoms.Headache ,clinical_symptoms.Muscle Pains,clinical_symptoms.Weakness,clinical_symptoms.Sore Throat,clinical_symptoms.Vomiting,clinical_symptoms.Nausea,clinical_symptoms.Abdominal Pain,clinical_symptoms.Diarrhea,clinical_symptoms.Facial Swelling ,"clinical_symptoms.Bleeding ( Nose, Gum, Stool)",clinical_symptoms.Difficult Breathing ,clinical_symptoms.Chest Pain ,clinical_symptoms.Hearing Loss,clinical_symptoms.Skin Rash ,clinical_symptoms.Pre_Existing_Conditions,clinical_symptoms.Vaccinated_in_Past_Years,clinical_symptoms.Current_Medications,treatment_outcomes.Hospitalized,treatment_outcomes.Hospital_Days,treatment_outcomes.Ribavarin_Treatment,treatment_outcomes.Fully_Recovered,treatment_outcomes.Post_Recovery_Symptoms,lab_results.IgM OD_Values ,lab_results.IgM OD_Results,lab_results.IgG OD_Values,lab_results.IgG OD_Results2
+22,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.002,Strongly Negative,0.055,Strongly Negative
+60,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.035,Strongly Negative,0.039,Strongly Negative
+27,Male,Kwara State,Nigeria,Rural,No,Yes,No,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,Yes,No,Nil,No,Yes,Others,0.536,Strongly Positive,0.118,Negative
+29,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.005,Strongly Negative,0.322,Positive
+25,Male,Kwara State,Nigeria,Urban,No,Yes,No,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,Yes,Yes,No,No,Yes,No,No,No,Other,No,Yes,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.126,Negative
+56,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.017,Strongly Negative,0.845,Strongly Positive
+18,Male,Kwara State,Nigeria,Urban,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Weakness,0.079,Strongly Negative,0.12,Negative
+45,Male,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.0,Strongly Negative,0.059,Strongly Negative
+55,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.128,Negative
+110,Female,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,Yes,Yes,No,Yes,No,Yes,No,Yes,Yes,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+63,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.002,Strongly Negative,0.058,Strongly Negative
+29,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.061,Strongly Negative,0.053,Strongly Negative
+20,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.101,Negative,0.216,Positive
+42,Female,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.054,Strongly Negative,0.026,Strongly Negative
+43,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.06,Strongly Negative,0.07,Strongly Negative
+42,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+19,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+37,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+24,Female,Kwara State,Nigeria,Urban,No,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.062,Strongly Negative,0.033,Strongly Negative
+29,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.026,Strongly Negative,0.038,Strongly Negative
+38,Male,Kwara State,Nigeria,Urban,No,No,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.011,Strongly Negative,0.313,Positive
+42,Female,Kwara State,Nigeria,Urban,Nil,No,Nil,No,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,Yes,No,No,Other,No,No,No,Nil,No,Yes,Others,0.037,Strongly Negative,0.048,Strongly Negative
+51,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+37,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.001,Strongly Negative,0.047,Strongly Negative
+30,Female,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,Yes,Yes,No,No,Yes,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.031,Strongly Negative,0.033,Strongly Negative
+55,Male,Kwara State,Nigeria,Rural,No,Yes,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Joint Pains,0.031,Strongly Negative,0.042,Strongly Negative
+83,Female,Kwara State,Nigeria,Urban,No,Yes,No,Yes,Yes,No,No,No,No,Yes,Yes,No,No,No,No,No,No,Yes,No,No,No,No,No,No,other,Yes,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.114,Negative
+23,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.175,Positive,0.026,Strongly Negative
+52,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.0,Strongly Negative,0.046,Strongly Negative
+35,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.05,Strongly Negative,0.053,Strongly Negative
+55,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+57,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.255,Positive
+40,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.049,Strongly Negative
+30,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.024,Strongly Negative,0.04,Strongly Negative
+37,Male,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.083,Strongly Negative,0.0,Strongly Negative
+42,Female,Kwara State,Nigeria,Urban,No,No,No,No,Yes,No,No,No,No,Yes,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.039,Strongly Negative,0.037,Strongly Negative
+30,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.053,Strongly Negative,0.062,Strongly Negative
+55,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.135,Negative,0.052,Strongly Negative
+20,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+33,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+30,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.097,Strongly Negative,0.107,Negative
+32,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.15,Negative,0.035,Strongly Negative
+42,Female,Kwara State,Nigeria,Urban,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.217,Positive,0.187,Positive
+45,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.006,Strongly Negative,0.045,Strongly Negative
+30,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Yes,No,No,Yes,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+54,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,Yes,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.415,Positive,0.078,Strongly Negative
+63,Male,Kwara State,Nigeria,Rural,No,No,No,No,Yes,Yes,No,No,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.038,Strongly Negative,0.051,Strongly Negative
+34,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.057,Strongly Negative,0.075,Strongly Negative
+56,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.056,Strongly Negative,0.053,Strongly Negative
+25,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,Yes,No,No,Nil,No,Yes,Pregnancy,0.054,Strongly Negative,0.05,Strongly Negative
+50,Male,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,Yes,No,No,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.008,Strongly Negative,0.0,Strongly Negative
+57,Female,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.033,Strongly Negative,0.027,Strongly Negative
+20,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,Yes,Nil,No,Yes,Fatique,0.103,Negative,0.111,Negative
+63,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.0,Strongly Negative,0.12,Negative
+18,Male,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,Yes,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.135,Negative
+24,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.03,Strongly Negative
+48,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.004,Strongly Negative
+38,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.006,Strongly Negative,0.118,Negative
+30,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,Yes,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,2.572,Strongly Positive,0.047,Strongly Negative
+46,Female,Kwara State,Nigeria,Urban,Nil,No,No,No,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+42,Female,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,Yes,Yes,No,No,Yes,No,No,Yes,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.323,Positive,0.16,Negative
+37,Female,Kwara State,Nigeria,Rural,Nil,No,No,No,Yes,No,No,No,No,Yes,No,Yes,No,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,N0,Nil,No,Yes,Others,0.016,Strongly Negative,0.0,Strongly Negative
+21,Male,Kwara State,Nigeria,Rural,Nil,No,No,No,Yes,Yes,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,1.5,Strongly Positive,0.15,Negative
+39,Female,Kwara State,Nigeria,Rural,Nil,No,No,No,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.017,Strongly Negative,0.018,Strongly Negative
+37,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,1.982,Strongly Positive,0.02,Strongly Negative
+45,Female,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.037,Strongly Negative,0.023,Strongly Negative
+19,Female,Kwara State,Nigeria,Urban,Yes,Yes,No,No,Yes,No,No,No,No,Yes,No,No,Yes,No,No,No,Yes,Yes,No,Yes,Yes,No,No,No,Other,No,No,No,Nil,No,Yes,Weakness,0.0,Strongly Negative,0.083,Strongly Negative
+26,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.056,Strongly Negative
+21,Female,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,Yes,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.109,Negative
+3,Male,Kwara State,Nigeria,Urban,No,No,No,No,Yes,No,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,Yes,Yes,No,Nil,No,No,Others,0.063,Strongly Negative,0.059,Strongly Negative
+47,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.062,Strongly Negative
+51,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.054,Strongly Negative,0.036,Strongly Negative
+26,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,No,Pregnancy,0.024,Strongly Negative,0.048,Strongly Negative
+48,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.009,Strongly Negative,0.061,Strongly Negative
+30,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Pregnancy,0.034,Strongly Negative,0.06,Strongly Negative
+27,Female,Kwara State,Nigeria,Urban,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.037,Strongly Negative,0.064,Strongly Negative
+36,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.137,Negative,0.453,Positive
+35,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.067,Strongly Negative,0.047,Strongly Negative
+22,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.032,Strongly Negative,0.04,Strongly Negative
+17,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,No,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,1.2,Strongly Positive,0.098,Strongly Negative
+23,Female,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.035,Strongly Negative,0.019,Strongly Negative
+25,Female,Kwara State,Nigeria,Urban,No,No,Yes,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.098,Strongly Negative,0.119,Negative
+47,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.056,Strongly Negative,0.066,Strongly Negative
+28,Female,Kwara State,Nigeria,Urban,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.1,Negative,0.113,Negative
+48,Male,Kwara State,Nigeria,Urban,No,Yes,No,No,Yes,No,No,No,No,Yes,No,No,Yes,No,No,No,Yes,Yes,No,Yes,Yes,No,No,No,Other,No,No,No,Nil,No,No,Weakness,0.0,Strongly Negative,0.073,Strongly Negative
+59,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.052,Strongly Negative,0.158,Negative
+63,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.37,Positive,0.066,Strongly Negative
+29,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.191,Positive,0.213,Positive
+45,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.02,Strongly Negative,0.077,Strongly Negative
+56,Male,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.03,Strongly Negative,0.055,Strongly Negative
+24,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.007,Strongly Negative,0.07,Strongly Negative
+23,Male,Kwara State,Nigeria,Rural,Nil,No,No,No,Yes,No,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.018,Strongly Negative
+28,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.486,Positive,0.054,Strongly Negative
+37,Male,Kwara State,Nigeria,Urban,No,No,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.027,Strongly Negative,0.026,Strongly Negative
+48,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.003,Strongly Negative,0.05,Strongly Negative
+50,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.007,Strongly Negative,0.046,Strongly Negative
+37,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.524,Strongly Positive
+29,Male,Kwara State,Nigeria,Urban,No,Yes,No,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.107,Negative,0.036,Strongly Negative
+39,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.026,Strongly Negative
+41,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+18,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,Yes,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.002,Strongly Negative,0.06,Strongly Negative
+64,Female,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,Yes,Yes,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,Hypertension,No,No,No,Nil,No,Yes,Others,0.014,Strongly Negative,0.0,Strongly Negative
+57,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,Yes,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.165,Negative,0.029,Strongly Negative
+64,Male,Kwara State,Nigeria,Urban,No,Yes,No,Yes,Yes,No,No,No,Yes,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,Hypertension,No,Yes,No,Nil,No,No,Hypertension,0.1,Negative,0.203,Positive
+42,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.067,Strongly Negative
+45,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,No,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.088,Strongly Negative,0.105,Negative
+27,Female,Kwara State,Nigeria,Urban,No,No,No,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.102,Negative,0.08,Strongly Negative
+20,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.046,Strongly Negative,0.063,Strongly Negative
+22,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,Yes,No,No,No,No,Yes,No,No,Other,Yes,No,No,Nil,No,No,Joint Pains,0.147,Negative,0.067,Strongly Negative
+56,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+61,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.036,Strongly Negative,0.043,Strongly Negative
+63,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+34,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.069,Strongly Negative,0.034,Strongly Negative
+8,Male,Kwara State,Nigeria,Urban,No,No,No,No,Yes,No,No,No,No,Yes,Yes,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+20,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+21,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.005,Strongly Negative,0.0,Strongly Negative
+25,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.039,Strongly Negative,0.152,Negative
+20,Female,Kwara State,Nigeria,Rural,No,Yes,No,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,Other,No,Yes,No,Nil,No,Yes,Others,0.186,Positive,0.074,Strongly Negative
+21,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.11,Negative
+32,Female,Kwara State,Nigeria,Urban,No,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.0,Strongly Negative,0.0,Strongly Negative
+65,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+43,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.05,Strongly Negative
+25,Female,Kwara State,Nigeria,Urban,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.11,Negative,0.1,Negative
+45,Female,Kwara State,Nigeria,Urban,No,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.054,Strongly Negative,0.513,Strongly Positive
+55,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.066,Strongly Negative
+39,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.136,Negative,0.234,Positive
+33,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.144,Negative,0.054,Strongly Negative
+1,Female,Kwara State,Nigeria,Rural,No,No,No,No,Yes,Yes,No,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.026,Strongly Negative,0.022,Strongly Negative
+20,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,Yes,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.136,Negative
+28,Female,Kwara State,Nigeria,Urban,Yes,Yes,No,No,Yes,No,No,No,No,Yes,No,No,Yes,No,No,No,Yes,Yes,No,Yes,Yes,No,No,No,Other,No,Yes,No,Nil,No,Yes,Others,0.152,Negative,0.136,Negative
+18,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.007,Strongly Negative,0.127,Negative
+23,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.015,Strongly Negative,0.868,Strongly Positive
+43,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.254,Positive,0.055,Strongly Negative
+20,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,No,Yes,No,No,No,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.375,Positive,0.053,Strongly Negative
+35,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.053,Strongly Negative,0.058,Strongly Negative
+48,Female,Kwara State,Nigeria,Rural,Nil,No,No,No,Yes,No,No,No,No,Yes,No,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.023,Strongly Negative,0.0,Strongly Negative
+28,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.643,Strongly Positive,0.122,Negative
+40,Female,Kwara State,Nigeria,Rural,Nil,No,No,No,Yes,No,No,No,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.006,Strongly Negative,0.0,Strongly Negative
+18,Female,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.294,Positive,0.043,Strongly Negative
+40,Male,Kwara State,Nigeria,Urban,No,No,No,No,Yes,Yes,No,No,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.023,Strongly Negative,0.036,Strongly Negative
+32,Female,Kwara State,Nigeria,Rural,No,Yes,No,No,Yes,No,No,No,No,No,Yes,No,No,Yes,No,No,No,Yes,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,No,Pregnancy,0.05,Strongly Negative,0.054,Strongly Negative
+40,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.004,Strongly Negative,0.048,Strongly Negative
+23,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.004,Strongly Negative,0.043,Strongly Negative
+32,Female,Kwara State,Nigeria,Rural,Nil,No,No,No,Yes,Yes,No,No,No,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.038,Strongly Negative,0.046,Strongly Negative
+45,Male,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,Yes,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,Hypertension,No,No,No,Nil,No,Yes,Others,0.025,Strongly Negative,0.0,Strongly Negative
+29,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.082,Strongly Negative
+40,Male,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,Yes,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.802,Strongly Positive,0.045,Strongly Negative
+28,Female,Kwara State,Nigeria,Urban,Yes,Yes,No,No,Yes,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.026,Strongly Negative,0.05,Strongly Negative
+52,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,Yes,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.338,Positive,0.058,Strongly Negative
+39,Male,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.26,Positive,0.111,Negative
+48,Female,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,Yes,Yes,No,No,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.363,Positive,0.051,Strongly Negative
+38,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,1.436,Strongly Positive,0.023,Strongly Negative
+65,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.003,Strongly Negative,0.053,Strongly Negative
+26,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,Yes,3 Days,No,Yes,Pregnancy,0.218,Positive,0.173,Negative
+19,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.063,Strongly Negative
+26,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.035,Strongly Negative,0.043,Strongly Negative
+36,Female,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.024,Strongly Negative,0.038,Strongly Negative
+43,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,Other,No,No,No,Nil,No,No,Others,0.015,Strongly Negative,0.037,Strongly Negative
+58,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.005,Strongly Negative,0.067,Strongly Negative
+32,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,No,Pregnancy,0.082,Strongly Negative,0.135,Negative
+58,Male,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.186,Positive,0.124,Negative
+16,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.012,Strongly Negative,0.066,Strongly Negative
+40,Male,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,Yes,No,No,Yes,No,Yes,Yes,Yes,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+54,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.366,Positive,0.045,Strongly Negative
+32,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.03,Strongly Negative,0.047,Strongly Negative
+27,Female,Kwara State,Nigeria,Urban,Yes,Yes,No,No,Yes,No,No,No,No,No,No,No,Yes,No,No,No,Yes,Yes,No,Yes,Yes,No,No,No,Other,No,No,No,Nil,No,Yes,Weakness,0.0,Strongly Negative,0.067,Strongly Negative
+27,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.051,Strongly Negative,0.051,Strongly Negative
+59,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,Yes,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,2.58,Strongly Positive,0.117,Negative
+40,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,Yes,No,No,No,No,No,No,Yes,No,No,No,Yes,No,No,Yes,No,No,No,No,Other,Yes,"Aceclofenac, Paracetamol & Serratiopeptidase",No,Nil,No,No,Weakness,0.045,Strongly Negative,0.03,Strongly Negative
+59,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.009,Strongly Negative,0.052,Strongly Negative
+54,Female,Kwara State,Nigeria,Urban,No,No,Yes,Yes,Yes,No,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.004,Strongly Negative,0.019,Strongly Negative
+38,Female,Kwara State,Nigeria,Rural,Nil,No,No,No,Yes,Yes,No,No,No,No,Yes,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.066,Strongly Negative,0.032,Strongly Negative
+37,Male,Kwara State,Nigeria,Urban,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Weakness,0.076,Strongly Negative,0.113,Negative
+7,Male,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.024,Strongly Negative,0.018,Strongly Negative
+19,Male,Kwara State,Nigeria,Rural,No,No,No,No,Yes,No,No,No,No,Yes,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.021,Strongly Negative,0.011,Strongly Negative
+44,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,Yes,No,No,Nil,No,Yes,Others,0.03,Strongly Negative,0.038,Strongly Negative
+30,Female,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,1.994,Strongly Positive,0.055,Strongly Negative
+56,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.0,Strongly Negative
+21,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.07,Strongly Negative
+24,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.005,Strongly Negative,0.048,Strongly Negative
+52,Female,Kwara State,Nigeria,Rural,Nil,No,No,No,Yes,No,No,No,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.057,Strongly Negative,0.051,Strongly Negative
+33,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.051,Strongly Negative,0.05,Strongly Negative
+29,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.05,Strongly Negative,0.181,Negative
+30,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.053,Strongly Negative
+47,Female,Kwara State,Nigeria,Rural,Nil,No,No,No,Yes,Yes,No,No,No,Yes,No,No,Yes,No,No,No,Yes,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.011,Strongly Negative,0.021,Strongly Negative
+51,Female,Kwara State,Nigeria,Rural,No,No,Yes,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,No,Others,0.066,Strongly Negative,0.036,Strongly Negative
+20,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,Yes,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.188,Positive,0.083,Strongly Negative
+35,Male,Kwara State,Nigeria,Rural,Yes,Yes,Yes,No,Yes,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,Yes,No,Nil,No,No,Others,0.043,Strongly Negative,0.036,Strongly Negative
+25,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.11,Negative,0.106,Negative
+63,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.384,Positive,0.059,Strongly Negative
+65,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.068,Strongly Negative,0.037,Strongly Negative
+62,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.0,Strongly Negative,0.044,Strongly Negative
+50,Male,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.001,Strongly Negative,0.048,Strongly Negative
+58,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.016,Strongly Negative,0.144,Negative
+30,Female,Kwara State,Nigeria,Urban,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,Yes,Pregnancy,0.669,Strongly Positive,0.522,Strongly Positive
+24,Male,Kwara State,Nigeria,Rural,Yes,Yes,Yes,No,Yes,Yes,No,No,No,No,Yes,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,Malaria Parasite,Yes,Yes,No,Nil,No,No,Weakness,0.044,Strongly Negative,0.049,Strongly Negative
+61,Female,Kwara State,Nigeria,Rural,No,Yes,Yes,Yes,Yes,No,No,No,No,No,No,No,Nil,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.003,Strongly Negative,0.052,Strongly Negative
+32,Female,Kwara State,Nigeria,Rural,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Pregnancy,No,No,No,Nil,No,No,Pregnancy,0.04,Strongly Negative,0.037,Strongly Negative
+58,Female,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Anti-malaria,0.046,Strongly Negative,0.042,Strongly Negative
+45,Male,Kwara State,Nigeria,Urban,No,Yes,Yes,Yes,Yes,No,No,No,No,No,Yes,No,Yes,No,No,No,No,No,No,No,No,No,No,No,Other,No,No,No,Nil,No,Yes,Others,0.189,Positive,0.044,Strongly Negative
