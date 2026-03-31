@@ -1,0 +1,33 @@
+feature,gain
+lab_results.IgM OD_Results_Strongly Negative,54.31986618041992
+lab_results.IgM OD_Results_Positive,43.358646392822266
+clinical_symptoms.Weakness_No,25.2015323638916
+lab_results.IgM OD_Values ,22.804105758666992
+Gender_Female,13.577077865600586
+treatment_outcomes.Hospitalized_No,8.304998397827148
+clinical_symptoms.Vomiting_No,4.60385799407959
+Hopital_Visits_30D_No,4.573566913604736
+treatment_outcomes.Post_Recovery_Symptoms_Anti-malaria,4.362064361572266
+treatment_outcomes.Hospital_Days_3 Days,4.313798904418945
+Hopital_Visits_30D_Yes,3.430002212524414
+clinical_symptoms.Pre_Existing_Conditions_Other,3.0809383392333984
+clinical_symptoms.Vomiting_Yes,2.886065721511841
+lab_results.IgG OD_Values,2.4998509883880615
+treatment_outcomes.Fully_Recovered_No,2.4949889183044434
+Food_Open_Storage_No,2.4039690494537354
+treatment_outcomes.Fully_Recovered_Yes,1.4778177738189697
+Age,1.27635657787323
+clinical_symptoms.Fever_Yes,1.2182425260543823
+clinical_symptoms.Fever_No,0.8948726654052734
+lab_results.IgG OD_Results2_Negative,0.5325387716293335
+clinical_symptoms.Pre_Existing_Conditions_Pregnancy,0.38888469338417053
+Settlement_Type_Rural,0.29916077852249146
+clinical_symptoms.Headache _No,0.22362545132637024
+clinical_symptoms.Headache _Yes,0.19575834274291992
+Rodent_Contact_6M_No,0.060038622468709946
+treatment_outcomes.Post_Recovery_Symptoms_Others,0.0426160953938961
+treatment_outcomes.Hospitalized_Yes,0.031696438789367676
+lab_results.IgG OD_Results2_Strongly Negative,0.02269480936229229
+lab_results.IgM OD_Results_Negative,0.016396284103393555
+treatment_outcomes.Post_Recovery_Symptoms_Pregnancy,0.012332580983638763
+Rodents_Droppings_home_No,0.001097366213798523

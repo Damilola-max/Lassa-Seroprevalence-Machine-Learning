@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-03-31 19:16:38",
+  "notes": {
+    "warning": "Only 3 positives: calibration + importance estimates are unstable. Treat as exploratory.",
+    "isotonic_warning": "Isotonic regression can severely overfit with tiny positives; use Platt as default."
+  },
+  "metrics": {
+    "raw": {
+      "pr_auc": 0.05740740740740741,
+      "roc_auc": 0.7786774628879891,
+      "brier": 0.019595836663814075
+    },
+    "platt": {
+      "pr_auc": 0.05740740740740741,
+      "roc_auc": 0.7786774628879891,
+      "brier": 0.011855415386574177
+    },
+    "isotonic": {
+      "pr_auc": 0.05925925925925926,
+      "roc_auc": 0.8663967611336032,
+      "brier": 0.011358024691358022
+    }
+  }
+}
