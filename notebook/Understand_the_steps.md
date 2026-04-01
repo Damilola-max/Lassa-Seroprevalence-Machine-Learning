@@ -12,7 +12,7 @@ The code is organized into **sections (notebooks)** that each do one clear job:
 
 > ⚠ **Very important:**  
 > The dataset currently has **only 3 PCR‑positive samples** out of 250.  
-> All models and results are **exploratory / research only**, not ready for clinical decision‑making.
+> All models and results are **exploratory / research only.**
 
 ---
 
