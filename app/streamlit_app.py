@@ -14,9 +14,8 @@ import seaborn as sns
 # GLOBAL CONFIG
 # =====================================================================================
 
-BASE_DIR = Path(__file__).resolve().parent
-MODELS_DIR = BASE_DIR / "models"
-REPORTS_DIR = BASE_DIR / "results" / "reports"
+MODELS_DIR = "models"
+REPORTS_DIR = "results" / "reports"
 
 st.set_page_config(
     page_title="Lassa Seroprevalence ML – Section 6",
