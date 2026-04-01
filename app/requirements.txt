@@ -1,4 +1,9 @@
-streamlit==1.33.0
+# Pin Streamlit to a version with prebuilt wheels for current infra
+streamlit==1.31.1
+
+# Use a Pillow version with manylinux wheel (avoid building from source)
+pillow==10.0.1
+
 pandas==2.2.1
 numpy==1.26.4
 scikit-learn==1.4.1.post1
