@@ -22,7 +22,7 @@ from sklearn.metrics import (
 )
 
 # -----------------------------------------------------------------------------------
-# CONFIG
+# STREAMLIT CONFIG
 # -----------------------------------------------------------------------------------
 
 st.set_page_config(
@@ -64,63 +64,93 @@ def ensemble_predict_proba(models, X):
 
 
 # -----------------------------------------------------------------------------------
-# INFERENCE FUNCTION – SAME LOGIC AS SECTION 6
+# CANONICAL → MODEL COLUMN MAPPING & INFERENCE
 # -----------------------------------------------------------------------------------
 
-def section6_predict(df_input: pd.DataFrame,
-                     preprocess,
-                     ensemble_models,
-                     platt,
-                     cross_artifacts,
-                     config):
+def build_model_frame_from_canonical(df_canon: pd.DataFrame,
+                                     config,
+                                     cross_artifacts) -> pd.DataFrame:
     """
-    Given a DataFrame with same columns as training X,
-    return a copy with p_pcr_pos, p_cross_reactive, prediction_label.
-    """
-    # We need original training X columns to align.
-    # Load from config by re-reading the training file structure.
-    # Here, we assume we can reconstruct from config + cross_artifacts.
+    Convert a 'canonical' input dataframe (with human-friendly names) into
+    the model's expected feature frame (columns as trained).
 
-    # Read config columns if available. Otherwise, we infer from data.
+    Canonical columns we support:
+      - age
+      - gender
+      - settlement_type
+      - fever
+      - weakness
+      - vomiting
+      - hospitalized
+      - hospital_days
+      - igm_od
+      - igg_od
+
+    Anything missing will be left as NaN and handled by the preprocessing
+    pipeline's imputation.
+    """
     numeric_cols = config["columns"]["numeric"]
     categorical_cols = config["columns"]["categorical"]
-
-    # Important: ensure all expected columns are present
     expected_cols = numeric_cols + categorical_cols
 
-    missing_cols = [c for c in expected_cols if c not in df_input.columns]
-    if missing_cols:
-        raise ValueError(
-            f"Input is missing columns required by the model: {missing_cols}"
-        )
+    # Initialize with NaNs
+    model_df = pd.DataFrame(columns=expected_cols)
+    model_df.loc[0:len(df_canon) - 1] = np.nan
 
-    # Reorder and keep only expected columns
-    df_use = df_input[expected_cols].copy()
+    # Map canonical names to model column names
+    canon_to_model = {
+        "age": "Age",
+        "gender": "Gender",
+        "settlement_type": "Settlement_Type",
+        "fever": "clinical_symptoms.Fever",
+        "weakness": "clinical_symptoms.Weakness",
+        "vomiting": "clinical_symptoms.Vomiting",
+        "hospitalized": "treatment_outcomes.Hospitalized",
+        "hospital_days": "treatment_outcomes.Hospital_Days",
+        "igm_od": cross_artifacts["igm_col"],  # e.g. "lab_results.IgM OD_Values " (note space)
+        "igg_od": cross_artifacts["igg_col"],  # e.g. "lab_results.IgG OD_Values"
+    }
 
-    # Transform through preprocess
-    Xt = preprocess.transform(df_use)
+    for canon_col, model_col in canon_to_model.items():
+        if canon_col in df_canon.columns and model_col in model_df.columns:
+            model_df[model_col] = df_canon[canon_col].values
+
+    return model_df
+
+
+def section6_predict_from_canonical(df_canon: pd.DataFrame,
+                                    preprocess,
+                                    ensemble_models,
+                                    platt,
+                                    cross_artifacts,
+                                    config) -> pd.DataFrame:
+    """
+    Take a canonical input DataFrame (simpler column names used in the app)
+    and run the Section 6 model, returning:
+    - p_pcr_pos
+    - p_cross_reactive
+    - prediction_label
+
+    Missing expected columns are left as NaN and handled by imputation.
+    """
+    model_df = build_model_frame_from_canonical(df_canon, config, cross_artifacts)
+
+    # Main PCR model
+    Xt = preprocess.transform(model_df)
     raw_proba = ensemble_predict_proba(ensemble_models, Xt)
     p_pcr_pos = platt.predict_proba(raw_proba.reshape(-1, 1))[:, 1]
 
-    # Cross-reactivity score
+    # Cross-reactivity model
     igm_col = cross_artifacts["igm_col"]
     igg_col = cross_artifacts["igg_col"]
+    X_od_new = model_df[[igm_col, igg_col]].values
+    p_cross = cross_artifacts["model"].predict_proba(X_od_new)[:, 1]
 
-    if igm_col not in df_use.columns or igg_col not in df_use.columns:
-        raise KeyError(
-            f"IgM/IgG OD columns missing from input. "
-            f"Expected {igm_col} and {igg_col}"
-        )
-
-    X_od_new = df_use[[igm_col, igg_col]].values
-    p_cross_reactive = cross_artifacts["model"].predict_proba(X_od_new)[:, 1]
-
-    # Threshold and labels
     thr = config["best_threshold_calibrated"]
     y_hat = (p_pcr_pos >= thr).astype(int)
 
     labels = []
-    for pp, pc, lab in zip(p_pcr_pos, p_cross_reactive, y_hat):
+    for pp, pc, lab in zip(p_pcr_pos, p_cross, y_hat):
         if lab == 1:
             if pc < 0.5:
                 labels.append("Likely PCR Positive (low cross-reactivity)")
@@ -132,20 +162,19 @@ def section6_predict(df_input: pd.DataFrame,
             else:
                 labels.append("PCR Negative (low cross-reactivity)")
 
-    out = df_use.copy()
+    out = df_canon.copy()
     out["p_pcr_pos"] = p_pcr_pos
-    out["p_cross_reactive"] = p_cross_reactive
+    out["p_cross_reactive"] = p_cross
     out["prediction_label"] = labels
     return out
 
 
 # -----------------------------------------------------------------------------------
-# PLOTTING HELPERS (FOR THE CURRENT INPUT ONLY)
+# PLOTTING HELPERS
 # -----------------------------------------------------------------------------------
 
 def plot_pcr_distribution(df_pred: pd.DataFrame, title: str) -> plt.Figure:
     fig, ax = plt.subplots()
-    # Here we don't know true labels, so we just show distribution of p_pcr_pos
     sns.histplot(df_pred["p_pcr_pos"], kde=True, stat="density", ax=ax)
     ax.set_xlabel("p_pcr_pos (calibrated)")
     ax.set_ylabel("Density")
@@ -164,8 +193,7 @@ def plot_cross_vs_pcr(df_pred: pd.DataFrame, title: str) -> plt.Figure:
     return fig
 
 
-def get_image_download_link(fig, filename: str) -> bytes:
-    """Return PNG bytes for a Matplotlib figure."""
+def get_image_download_bytes(fig) -> bytes:
     buf = io.BytesIO()
     fig.savefig(buf, format="png", bbox_inches="tight")
     buf.seek(0)
@@ -182,6 +210,7 @@ def main():
         """
         **Purpose (Research Only)**  
         This app uses the **Section 6** machine-learning model to estimate:
+
         - `p_pcr_pos`: probability that PCR result would be **positive**  
         - `p_cross_reactive`: probability of **high IgM/IgG OD cross-reactivity**  
         - a combined text label describing the pattern  
@@ -192,7 +221,7 @@ def main():
         """
     )
 
-    # Load artifacts
+    # Load model artifacts
     try:
         preprocess, ensemble_models, platt, cross_artifacts, config = load_section6_artifacts()
     except Exception as e:
@@ -205,18 +234,33 @@ def main():
         ["Upload CSV", "Manual single-patient entry"]
     )
 
-    # --------------------------------------------------------------------------------
-    # MODE 1: CSV Upload
-    # --------------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
+    # MODE 1: CSV UPLOAD
+    # -------------------------------------------------------------------------
     if input_mode == "Upload CSV":
         st.subheader("Upload CSV of patient data")
         st.markdown(
             """
-            - CSV must contain the **same columns** as the training data used in Section 6  
-              (including IgM/IgG OD value columns).  
-            - Each row is one individual.  
+            ### Expected CSV columns (canonical names)
+
+            **Required** (at least these five):
+            - `age` (numeric)
+            - `gender` (e.g. Male/Female)
+            - `settlement_type` (e.g. Rural/Urban)
+            - `igm_od` (IgM OD value, numeric)
+            - `igg_od` (IgG OD value, numeric)
+
+            **Optional** (improve model context if present):
+            - `fever` (Yes/No)
+            - `weakness` (Yes/No)
+            - `vomiting` (Yes/No)
+            - `hospitalized` (Yes/No)
+            - `hospital_days` (e.g. 'Nil', '3 Days')
+
+            The model will impute missing internal features as needed.
             """
         )
+
         uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 
         if uploaded_file is not None:
@@ -228,11 +272,21 @@ def main():
                 st.error(f"Could not read CSV: {e}")
                 return
 
+            # Basic check for minimal required canonical columns
+            required_canon = ["age", "gender", "settlement_type", "igm_od", "igg_od"]
+            missing_required = [c for c in required_canon if c not in df_input.columns]
+            if missing_required:
+                st.error(
+                    f"The uploaded CSV is missing required columns: {missing_required}\n\n"
+                    f"Please rename/format your CSV to use the canonical column names described above."
+                )
+                return
+
             if st.button("Run Section 6 model on CSV"):
                 with st.spinner("Running model..."):
                     try:
-                        df_pred = section6_predict(
-                            df_input=df_input,
+                        df_pred = section6_predict_from_canonical(
+                            df_canon=df_input,
                             preprocess=preprocess,
                             ensemble_models=ensemble_models,
                             platt=platt,
@@ -247,7 +301,7 @@ def main():
                 st.subheader("Model outputs (first 10 rows)")
                 st.dataframe(df_pred.head(10))
 
-                # Download full predictions as CSV
+                # Download predictions as CSV
                 csv_bytes = df_pred.to_csv(index=False).encode("utf-8")
                 st.download_button(
                     label="Download predictions as CSV",
@@ -258,15 +312,15 @@ def main():
 
                 # Plots for this input
                 st.subheader("Visualization based on your uploaded data")
-
                 col1, col2 = st.columns(2)
+
                 with col1:
                     fig1 = plot_pcr_distribution(
                         df_pred,
                         title="Distribution of p_pcr_pos (uploaded data)"
                     )
                     st.pyplot(fig1)
-                    png1 = get_image_download_link(fig1, "pcr_distribution.png")
+                    png1 = get_image_download_bytes(fig1)
                     st.download_button(
                         label="Download this plot as PNG",
                         data=png1,
@@ -280,7 +334,7 @@ def main():
                         title="p_pcr_pos vs p_cross_reactive (uploaded data)"
                     )
                     st.pyplot(fig2)
-                    png2 = get_image_download_link(fig2, "cross_vs_pcr.png")
+                    png2 = get_image_download_bytes(fig2)
                     st.download_button(
                         label="Download this plot as PNG",
                         data=png2,
@@ -288,90 +342,59 @@ def main():
                         mime="image/png"
                     )
 
-    # --------------------------------------------------------------------------------
-    # MODE 2: Manual single-patient entry
-    # --------------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
+    # MODE 2: MANUAL SINGLE-PATIENT ENTRY
+    # -------------------------------------------------------------------------
     else:
         st.subheader("Manual single-patient entry")
 
         st.markdown(
             """
             Fill in the key fields below.  
-            For simplicity, this form only covers some important columns.  
-            Missing columns will be filled with default values if possible (but the model
-            expects the full feature set as in training).
+            These correspond to the **canonical input columns** used by the model.
+            The app will map them into the internal model features and impute
+            anything else that was used during training.
             """
         )
 
-        # We will construct a single-row DataFrame from user inputs.
-        # For a novice-friendly form, we explicitly ask for some core features.
-        # Remaining features we initialize as NaN and let the preprocess pipeline impute.
-
-        # NOTE: The exact column names must match your dataset.
-        # We retrieve the full column list by reloading X_all from Section 7-style logic.
-        # For simplicity, we re-read the CSV used in Section 6.
-        DATA_PATH = "data/embeddings/data/LASV_Master_Data!.csv"
-        TARGET_COL = "lab_results.PCR_Results"
-
-        if not os.path.exists(DATA_PATH):
-            st.error(f"Data file not found at {DATA_PATH}. Manual form cannot infer columns.")
-            st.stop()
-
-        df_raw = pd.read_csv(DATA_PATH)
-        df_raw = df_raw.drop(columns=[TARGET_COL], errors="ignore")
-
-        # Drop same high-cardinality / ID columns
-        drop_cols = ["Full_Name", "Patient_ID", "Town/City", "Occupation"]
-        X_template = df_raw.drop(columns=[c for c in drop_cols if c in df_raw.columns], errors="ignore")
-
-        # We will pre-fill with NaN
-        single = pd.DataFrame(columns=X_template.columns)
-        single.loc[0] = np.nan
-
-        # A few key fields as form inputs
         col_a, col_b = st.columns(2)
 
         with col_a:
             age = st.number_input("Age", min_value=0, max_value=120, value=30)
             gender = st.selectbox("Gender", ["Male", "Female"])
-            settlement = st.selectbox("Settlement_Type", ["Rural", "Urban"])
-            fever = st.selectbox("clinical_symptoms.Fever", ["Yes", "No"])
-            weakness = st.selectbox("clinical_symptoms.Weakness", ["Yes", "No"])
+            settlement = st.selectbox("Settlement type", ["Rural", "Urban"])
+            fever = st.selectbox("Fever", ["Yes", "No"])
+            weakness = st.selectbox("Weakness", ["Yes", "No"])
 
         with col_b:
-            igm_od = st.number_input("lab_results.IgM OD_Values", value=0.1, step=0.01, format="%.3f")
-            igg_od = st.number_input("lab_results.IgG OD_Values", value=0.1, step=0.01, format="%.3f")
-            vomiting = st.selectbox("clinical_symptoms.Vomiting", ["Yes", "No"])
-            hospitalized = st.selectbox("treatment_outcomes.Hospitalized", ["Yes", "No"])
-            hospital_days = st.text_input("treatment_outcomes.Hospital_Days (e.g. 'Nil', '3 Days')", "Nil")
+            igm_od = st.number_input("IgM OD value (igm_od)", value=0.10, step=0.01, format="%.3f")
+            igg_od = st.number_input("IgG OD value (igg_od)", value=0.10, step=0.01, format="%.3f")
+            vomiting = st.selectbox("Vomiting", ["Yes", "No"])
+            hospitalized = st.selectbox("Hospitalized", ["Yes", "No"])
+            hospital_days = st.text_input("Hospital days (e.g. 'Nil', '3 Days')", "Nil")
 
-        # Apply to single-row DataFrame if columns exist
-        col_map = {
-            "Age": age,
-            "Gender": gender,
-            "Settlement_Type": settlement,
-            "clinical_symptoms.Fever": fever,
-            "clinical_symptoms.Weakness": weakness,
-            "lab_results.IgM OD_Values": igm_od,
-            "lab_results.IgM OD_Values ": igm_od,  # in case of trailing space
-            "lab_results.IgG OD_Values": igg_od,
-            "clinical_symptoms.Vomiting": vomiting,
-            "treatment_outcomes.Hospitalized": hospitalized,
-            "treatment_outcomes.Hospital_Days": hospital_days
-        }
+        # Build canonical single-row DataFrame
+        single_canon = pd.DataFrame([{
+            "age": age,
+            "gender": gender,
+            "settlement_type": settlement,
+            "fever": fever,
+            "weakness": weakness,
+            "igm_od": igm_od,
+            "igg_od": igg_od,
+            "vomiting": vomiting,
+            "hospitalized": hospitalized,
+            "hospital_days": hospital_days
+        }])
 
-        for col_name, val in col_map.items():
-            if col_name in single.columns:
-                single.loc[0, col_name] = val
-
-        st.write("Preview of constructed single-patient input:")
-        st.dataframe(single)
+        st.write("Canonical input sent to the model:")
+        st.dataframe(single_canon)
 
         if st.button("Run model on this patient"):
             with st.spinner("Running model..."):
                 try:
-                    df_pred = section6_predict(
-                        df_input=single,
+                    df_pred = section6_predict_from_canonical(
+                        df_canon=single_canon,
                         preprocess=preprocess,
                         ensemble_models=ensemble_models,
                         platt=platt,
@@ -380,18 +403,17 @@ def main():
                     )
                 except Exception as e:
                     st.error(f"Error during prediction: {e}")
-                    return
+                    st.stop()
 
             st.success("Prediction complete.")
             st.subheader("Model output for this patient")
             st.dataframe(df_pred[["p_pcr_pos", "p_cross_reactive", "prediction_label"]])
 
-            # Plots for the single point (just show as dot)
             st.subheader("Visualization")
 
             fig1 = plot_pcr_distribution(df_pred, title="p_pcr_pos for this patient")
             st.pyplot(fig1)
-            png1 = get_image_download_link(fig1, "single_pcr_distribution.png")
+            png1 = get_image_download_bytes(fig1)
             st.download_button(
                 label="Download this plot as PNG",
                 data=png1,
@@ -401,7 +423,7 @@ def main():
 
             fig2 = plot_cross_vs_pcr(df_pred, title="p_pcr_pos vs p_cross_reactive for this patient")
             st.pyplot(fig2)
-            png2 = get_image_download_link(fig2, "single_cross_vs_pcr.png")
+            png2 = get_image_download_bytes(fig2)
             st.download_button(
                 label="Download this plot as PNG",
                 data=png2,
@@ -409,16 +431,16 @@ def main():
                 mime="image/png"
             )
 
-    # --------------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     # FOOTER / DISCLAIMER
-    # --------------------------------------------------------------------------------
+    # -------------------------------------------------------------------------
     st.markdown("---")
     st.markdown(
         """
         **Disclaimer**  
         This tool is based on a research model trained on a very small dataset  
         (**3 PCR-positive samples**). Outputs are **not validated** for clinical use  
-        and must **not** be used for diagnosis or treatment decisions.  
+        and must **not** be used for diagnosis or treatment decisions.
         """
     )
 
