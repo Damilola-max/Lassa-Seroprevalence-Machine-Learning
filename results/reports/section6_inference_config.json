@@ -1,0 +1,57 @@
+{
+  "generated_at": "2026-04-01 13:17:25",
+  "best_threshold_calibrated": 0.02436454849498328,
+  "notes": {
+    "warning": "Only 3 positives; predictive power + stability limited.",
+    "intended_use": "Research / development of PCR + cross-reactivity scorer",
+    "pcr_probability_name": "p_pcr_pos",
+    "cross_reactivity_probability_name": "p_cross_reactive"
+  },
+  "columns": {
+    "numeric": [
+      "Age",
+      "lab_results.IgM OD_Values ",
+      "lab_results.IgG OD_Values"
+    ],
+    "categorical": [
+      "Gender",
+      "State",
+      "Country",
+      "Settlement_Type",
+      "Recent_Travel_30D",
+      "Rodent_Contact_6M",
+      "Food_Open_Storage",
+      "Rodents_Droppings_home",
+      "Participated_in_Survey",
+      "Hopital_Visits_30D",
+      "Contact_Confirmed_Case",
+      "LASV_Mortality",
+      "Community_lassa_awareness",
+      "clinical_symptoms.Fever",
+      "clinical_symptoms.Headache ",
+      "clinical_symptoms.Muscle Pains",
+      "clinical_symptoms.Weakness",
+      "clinical_symptoms.Sore Throat",
+      "clinical_symptoms.Vomiting",
+      "clinical_symptoms.Nausea",
+      "clinical_symptoms.Abdominal Pain",
+      "clinical_symptoms.Diarrhea",
+      "clinical_symptoms.Facial Swelling ",
+      "clinical_symptoms.Bleeding ( Nose, Gum, Stool)",
+      "clinical_symptoms.Difficult Breathing ",
+      "clinical_symptoms.Chest Pain ",
+      "clinical_symptoms.Hearing Loss",
+      "clinical_symptoms.Skin Rash ",
+      "clinical_symptoms.Pre_Existing_Conditions",
+      "clinical_symptoms.Vaccinated_in_Past_Years",
+      "clinical_symptoms.Current_Medications",
+      "treatment_outcomes.Hospitalized",
+      "treatment_outcomes.Hospital_Days",
+      "treatment_outcomes.Ribavarin_Treatment",
+      "treatment_outcomes.Fully_Recovered",
+      "treatment_outcomes.Post_Recovery_Symptoms",
+      "lab_results.IgM OD_Results",
+      "lab_results.IgG OD_Results2"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-04-01 13:12:53",
+  "warning": "Only 3 positives total; treat metrics as exploratory.",
+  "metrics": {
+    "train_raw": {
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "brier": 0.002843315014615655
+    },
+    "train_cal": {
+      "pr_auc": 1.0,
+      "roc_auc": 1.0,
+      "brier": 0.0091311583028613
+    },
+    "test_raw": {
+      "pr_auc": 0.125,
+      "roc_auc": 0.86,
+      "brier": 0.03473365306854248
+    },
+    "test_cal": {
+      "pr_auc": 0.125,
+      "roc_auc": 0.86,
+      "brier": 0.019356668246271063
+    }
+  }
+}
