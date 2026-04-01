@@ -33,7 +33,13 @@ REPORTS_DIR = Path("results/reports")
 
 # Canonical columns we expect from the user
 CANONICAL_REQUIRED = ["age", "gender", "settlement_type", "igm_od", "igg_od"]
-CANONICAL_OPTIONAL = ["fever", "weakness", "vomiting", "hospitalized", "hospital_days"]
+CANONICAL_OPTIONAL = [
+    "fever", "weakness", "vomiting", "hospitalized", "hospital_days",
+    "state", "country",
+    "recent_travel_30d", "rodent_contact_6m",
+    "food_open_storage", "rodents_droppings_home",
+    "hospital_visits_30d", "contact_confirmed_case",
+]
 
 
 # =============================================================================
@@ -43,7 +49,7 @@ CANONICAL_OPTIONAL = ["fever", "weakness", "vomiting", "hospitalized", "hospital
 def patch_logistic_regression(lr):
     """
     Patch a LogisticRegression loaded from an older sklearn version so it works
-    with current sklearn. This avoids AttributeError: 'multi_class'... etc.
+    with current sklearn. Avoids AttributeError: 'multi_class', etc.
     """
     try:
         from sklearn.linear_model import LogisticRegression  # noqa: F401
@@ -51,11 +57,11 @@ def patch_logistic_regression(lr):
         if lr is None:
             return lr
 
-        # multi_class is used in predict_proba in new sklearn
+        # multi_class is used in predict_proba in newer sklearn
         if not hasattr(lr, "multi_class"):
             lr.multi_class = "auto"
 
-        # n_features_in_ is sometimes required
+        # n_features_in_ can be required
         if not hasattr(lr, "n_features_in_") and hasattr(lr, "coef_"):
             lr.n_features_in_ = lr.coef_.shape[1]
 
@@ -64,7 +70,7 @@ def patch_logistic_regression(lr):
             lr.classes_ = np.array([0, 1])
 
     except Exception:
-        # If anything goes wrong, just return it as-is; we'll still guard later
+        # If anything goes wrong, just return it as-is; we still guard later
         pass
 
     return lr
@@ -118,16 +124,33 @@ def build_model_frame_from_canonical(df_canon: pd.DataFrame,
     model_df = pd.DataFrame(columns=expected_cols)
     model_df.loc[0:len(df_canon) - 1] = np.nan
 
-    # Map canonical → model feature names.
+    # Map canonical → model feature names (all from your training data)
     canon_to_model = {
+        # demographics
         "age": "Age",
         "gender": "Gender",
         "settlement_type": "Settlement_Type",
+        "state": "State",
+        "country": "Country",
+
+        # exposures / context
+        "recent_travel_30d": "Recent_Travel_30D",
+        "rodent_contact_6m": "Rodent_Contact_6M",
+        "food_open_storage": "Food_Open_Storage",
+        "rodents_droppings_home": "Rodents_Droppings_home",
+        "hospital_visits_30d": "Hopital_Visits_30D",
+        "contact_confirmed_case": "Contact_Confirmed_Case",
+
+        # key symptoms
         "fever": "clinical_symptoms.Fever",
         "weakness": "clinical_symptoms.Weakness",
         "vomiting": "clinical_symptoms.Vomiting",
+
+        # outcomes
         "hospitalized": "treatment_outcomes.Hospitalized",
         "hospital_days": "treatment_outcomes.Hospital_Days",
+
+        # IgM / IgG OD
         "igm_od": cross_artifacts["igm_col"],  # e.g. "lab_results.IgM OD_Values "
         "igg_od": cross_artifacts["igg_col"],  # e.g. "lab_results.IgG OD_Values"
     }
@@ -212,21 +235,46 @@ def run_section6_inference(df_canon: pd.DataFrame,
 
 def plot_pcr_distribution(df_pred: pd.DataFrame, title: str) -> plt.Figure:
     fig, ax = plt.subplots()
-    sns.histplot(df_pred["p_pcr_pos"], kde=True, stat="density", ax=ax)
+    sns.histplot(df_pred["p_pcr_pos"], kde=True, stat="density", ax=ax, color="tab:red")
     ax.set_xlabel("p_pcr_pos (calibrated)")
     ax.set_ylabel("Density")
     ax.set_title(title)
     return fig
 
 
-def plot_cross_vs_pcr(df_pred: pd.DataFrame, title: str) -> plt.Figure:
+def plot_cross_vs_pcr(df_pred: pd.DataFrame, title: str, thr: float) -> plt.Figure:
     fig, ax = plt.subplots()
     sc = ax.scatter(df_pred["p_pcr_pos"], df_pred["p_cross_reactive"],
-                    c=df_pred["p_pcr_pos"], cmap="viridis", alpha=0.7)
+                    c=df_pred["p_pcr_pos"], cmap="viridis", alpha=0.8, edgecolor="k", linewidth=0.5)
+    ax.axvline(thr, color="black", linestyle="--", linewidth=1, label=f"PCR threshold={thr:.3f}")
     ax.set_xlabel("p_pcr_pos")
     ax.set_ylabel("p_cross_reactive")
     ax.set_title(title)
+    ax.legend(loc="upper left")
     fig.colorbar(sc, ax=ax, label="p_pcr_pos")
+    return fig
+
+
+def plot_single_patient_card(row: pd.Series, thr: float) -> plt.Figure:
+    """Compact 'patient card' style figure with horizontal bars for probabilities."""
+    fig, ax = plt.subplots(figsize=(6, 2.6))
+    metrics = ["Probability PCR+", "Probability high cross-reactivity"]
+    values = [row["p_pcr_pos"], row["p_cross_reactive"]]
+    colors = ["tab:red", "tab:purple"]
+
+    ax.barh(metrics, values, color=colors, alpha=0.9)
+    ax.set_xlim(0, 1)
+    ax.set_xlabel("Probability")
+    ax.set_title("Patient risk profile")
+
+    # Mark PCR threshold on the first bar
+    ax.axvline(thr, color="black", linestyle="--", linewidth=1)
+    ax.text(thr, -0.7, f"PCR threshold = {thr:.3f}", ha="center", va="bottom", fontsize=8)
+
+    for y, v in zip(metrics, values):
+        ax.text(v + 0.02, y, f"{v:.1%}", va="center", fontsize=9)
+
+    plt.tight_layout()
     return fig
 
 
@@ -278,31 +326,60 @@ def main():
     if mode == "Manual single-patient entry":
         st.subheader("Manual single-patient entry")
 
-        col_a, col_b = st.columns(2)
+        st.markdown("### Demographics & Context")
+        col_a, col_b, col_c = st.columns(3)
 
         with col_a:
             age = st.number_input("Age", min_value=0, max_value=120, value=30)
             gender = st.selectbox("Gender", ["Male", "Female"])
             settlement = st.selectbox("Settlement type", ["Rural", "Urban"])
-            fever = st.selectbox("Fever", ["Yes", "No"])
-            weakness = st.selectbox("Weakness", ["Yes", "No"])
 
         with col_b:
+            state = st.text_input("State", "Ondo")
+            country = st.text_input("Country", "Nigeria")
+            recent_travel_30d = st.selectbox("Recent travel (last 30 days)", ["No", "Yes"])
+
+        with col_c:
+            rodent_contact_6m = st.selectbox("Rodent contact (last 6 months)", ["No", "Yes"])
+            food_open_storage = st.selectbox("Food stored open", ["No", "Yes"])
+            rodents_droppings_home = st.selectbox("Rodent droppings at home", ["No", "Yes"])
+
+        st.markdown("### Clinical Symptoms")
+        col_s1, col_s2 = st.columns(2)
+        with col_s1:
+            fever = st.selectbox("Fever", ["Yes", "No"])
+            weakness = st.selectbox("Weakness", ["Yes", "No"])
+            vomiting = st.selectbox("Vomiting", ["Yes", "No"])
+        with col_s2:
+            hospital_visits_30d = st.selectbox("Hospital visits (last 30 days)", ["No", "Yes"])
+            contact_confirmed_case = st.selectbox("Contact with confirmed Lassa case", ["No", "Yes"])
+
+        st.markdown("### Lab & Outcome")
+        col_l1, col_l2 = st.columns(2)
+        with col_l1:
             igm_od = st.number_input("IgM OD value (igm_od)", value=0.10, step=0.01, format="%.3f")
             igg_od = st.number_input("IgG OD value (igg_od)", value=0.10, step=0.01, format="%.3f")
-            vomiting = st.selectbox("Vomiting", ["Yes", "No"])
-            hospitalized = st.selectbox("Hospitalized", ["Yes", "No"])
+        with col_l2:
+            hospitalized = st.selectbox("Hospitalized", ["No", "Yes"])
             hospital_days = st.text_input("Hospital days (e.g. 'Nil', '3 Days')", "Nil")
 
         single_canon = pd.DataFrame([{
             "age": age,
             "gender": gender,
             "settlement_type": settlement,
+            "state": state,
+            "country": country,
+            "recent_travel_30d": recent_travel_30d,
+            "rodent_contact_6m": rodent_contact_6m,
+            "food_open_storage": food_open_storage,
+            "rodents_droppings_home": rodents_droppings_home,
+            "hospital_visits_30d": hospital_visits_30d,
+            "contact_confirmed_case": contact_confirmed_case,
             "fever": fever,
             "weakness": weakness,
+            "vomiting": vomiting,
             "igm_od": igm_od,
             "igg_od": igg_od,
-            "vomiting": vomiting,
             "hospitalized": hospitalized,
             "hospital_days": hospital_days
         }])
@@ -329,27 +406,28 @@ def main():
             st.subheader("Model output for this patient")
             st.dataframe(df_pred[["p_pcr_pos", "p_cross_reactive", "prediction_label"]])
 
-            st.subheader("Visualization")
+            thr = config["best_threshold_calibrated"]
+            patient_row = df_pred.iloc[0]
 
-            fig1 = plot_pcr_distribution(df_pred, "p_pcr_pos for this patient")
-            st.pyplot(fig1)
-            png1 = fig_to_png_bytes(fig1)
+            st.markdown("### Patient risk card")
+            fig_card = plot_single_patient_card(patient_row, thr)
+            st.pyplot(fig_card)
+            png_card = fig_to_png_bytes(fig_card)
             st.download_button(
-                label="Download this plot as PNG",
-                data=png1,
-                file_name="single_patient_pcr_probability.png",
+                label="Download patient card as PNG",
+                data=png_card,
+                file_name="single_patient_card.png",
                 mime="image/png"
             )
 
-            fig2 = plot_cross_vs_pcr(df_pred, "p_pcr_pos vs p_cross_reactive for this patient")
-            st.pyplot(fig2)
-            png2 = fig_to_png_bytes(fig2)
-            st.download_button(
-                label="Download this plot as PNG",
-                data=png2,
-                file_name="single_patient_pcr_vs_crossreactivity.png",
-                mime="image/png"
-            )
+            st.markdown("### Additional visualizations")
+            colv1, colv2 = st.columns(2)
+            with colv1:
+                fig1 = plot_pcr_distribution(df_pred, "p_pcr_pos for this patient")
+                st.pyplot(fig1)
+            with colv2:
+                fig2 = plot_cross_vs_pcr(df_pred, "p_pcr_pos vs p_cross_reactive (this patient)", thr)
+                st.pyplot(fig2)
 
     # -------------------------------------------------------------------------
     # CSV MODE (ADVANCED)
@@ -366,8 +444,12 @@ def main():
             - `igm_od`  
             - `igg_od`  
 
-            Optional:
+            **Optional but recommended:**
+
             - `fever`, `weakness`, `vomiting`, `hospitalized`, `hospital_days`  
+            - `state`, `country`  
+            - `recent_travel_30d`, `rodent_contact_6m`, `food_open_storage`, `rodents_droppings_home`  
+            - `hospital_visits_30d`, `contact_confirmed_case`  
 
             Please rename your CSV columns to these names before uploading.
             """
@@ -411,6 +493,15 @@ def main():
                 st.subheader("Model outputs (first 10 rows)")
                 st.dataframe(df_pred.head(10))
 
+                # Cohort summary
+                thr = config["best_threshold_calibrated"]
+                pos_rate = (df_pred["p_pcr_pos"] >= thr).mean()
+                high_cross = (df_pred["p_cross_reactive"] >= 0.5).mean()
+                st.markdown("### Cohort summary")
+                st.write(f"Estimated PCR-positive fraction (at threshold): **{pos_rate:.2%}**")
+                st.write(f"High cross-reactivity fraction (p_cross_reactive ≥ 0.5): **{high_cross:.2%}**")
+
+                # Download predictions
                 csv_bytes = df_pred.to_csv(index=False).encode("utf-8")
                 st.download_button(
                     label="Download predictions as CSV",
@@ -419,30 +510,15 @@ def main():
                     mime="text/csv"
                 )
 
-                st.subheader("Visualization based on your uploaded data")
+                st.markdown("### Visualizations for uploaded cohort")
                 col1, col2 = st.columns(2)
 
                 with col1:
                     fig1 = plot_pcr_distribution(df_pred, "Distribution of p_pcr_pos (uploaded data)")
                     st.pyplot(fig1)
-                    png1 = fig_to_png_bytes(fig1)
-                    st.download_button(
-                        label="Download this plot as PNG",
-                        data=png1,
-                        file_name="pcr_probability_distribution.png",
-                        mime="image/png"
-                    )
-
                 with col2:
-                    fig2 = plot_cross_vs_pcr(df_pred, "p_pcr_pos vs p_cross_reactive (uploaded data)")
+                    fig2 = plot_cross_vs_pcr(df_pred, "p_pcr_pos vs p_cross_reactive (uploaded data)", thr)
                     st.pyplot(fig2)
-                    png2 = fig_to_png_bytes(fig2)
-                    st.download_button(
-                        label="Download this plot as PNG",
-                        data=png2,
-                        file_name="pcr_vs_crossreactivity_scatter.png",
-                        mime="image/png"
-                    )
 
     # -------------------------------------------------------------------------
     # FOOTER / DISCLAIMER
