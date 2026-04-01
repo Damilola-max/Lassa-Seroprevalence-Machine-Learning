@@ -14,8 +14,12 @@ import seaborn as sns
 # =============================================================================
 
 BASE_DIR = Path(__file__).resolve().parent
-MODELS_DIR = BASE_DIR / "models"
-REPORTS_DIR = BASE_DIR / "results" / "reports"
+
+# go one level UP to repo root
+ROOT_DIR = BASE_DIR.parent
+
+MODELS_DIR = ROOT_DIR / "models"
+REPORTS_DIR = ROOT_DIR / "results" / "reports"
 
 st.set_page_config(
     page_title="Lassa Seroprevalence ML – PCR & Cross-Reactivity",
