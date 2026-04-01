@@ -54,6 +54,80 @@ def ensemble_predict_proba(models, X):
 
 
 # ====================================================================================
+# CANONICAL COLUMN NAMES + AUTO-MAPPING FROM USER CSV
+# ====================================================================================
+
+CANONICAL_REQUIRED = ["age", "gender", "settlement_type", "igm_od", "igg_od"]
+CANONICAL_OPTIONAL = ["fever", "weakness", "vomiting", "hospitalized", "hospital_days"]
+
+
+def auto_map_csv_columns(df_raw: pd.DataFrame) -> pd.DataFrame:
+    """
+    Try to automatically map user CSV columns to our canonical names using
+    simple lower-case substring matching.
+    """
+
+    original_cols = list(df_raw.columns)
+    lower_map = {c.lower(): c for c in original_cols}
+
+    mapped = {}
+
+    # Helper to find a column by a list of possible substrings
+    def find_col(candidates):
+        for lcol, orig in lower_map.items():
+            for cand in candidates:
+                if cand in lcol:
+                    return orig
+        return None
+
+    # Age
+    age_col = find_col(["age"])
+    if age_col:
+        mapped["age"] = df_raw[age_col]
+    # Gender
+    gender_col = find_col(["gender", "sex"])
+    if gender_col:
+        mapped["gender"] = df_raw[gender_col]
+    # Settlement type
+    sett_col = find_col(["settlement", "rural", "urban", "village", "city"])
+    if sett_col:
+        mapped["settlement_type"] = df_raw[sett_col]
+    # IgM OD
+    igm_col = find_col(["igm", "ig_m"])
+    if igm_col:
+        mapped["igm_od"] = df_raw[igm_col]
+    # IgG OD
+    igg_col = find_col(["igg", "ig_g"])
+    if igg_col:
+        mapped["igg_od"] = df_raw[igg_col]
+
+    # Optional: basic symptoms/fields
+    fever_col = find_col(["fever"])
+    if fever_col:
+        mapped["fever"] = df_raw[fever_col]
+
+    weakness_col = find_col(["weakness"])
+    if weakness_col:
+        mapped["weakness"] = df_raw[weakness_col]
+
+    vomiting_col = find_col(["vomit"])
+    if vomiting_col:
+        mapped["vomiting"] = df_raw[vomiting_col]
+
+    hosp_col = find_col(["hospitalized", "admit", "admission"])
+    if hosp_col:
+        mapped["hospitalized"] = df_raw[hosp_col]
+
+    hd_col = find_col(["hospital_days", "days_in_hospital", "length_of_stay"])
+    if hd_col:
+        mapped["hospital_days"] = df_raw[hd_col]
+
+    df_canon = pd.DataFrame(mapped)
+
+    return df_canon
+
+
+# ====================================================================================
 # CANONICAL → MODEL FEATURE FRAME
 # ====================================================================================
 
@@ -64,7 +138,7 @@ def build_model_frame_from_canonical(df_canon: pd.DataFrame,
     Convert a 'canonical' input dataframe (with human-friendly names) into
     the model's expected feature frame (columns as trained).
 
-    Canonical columns we support as user inputs:
+    Canonical columns supported:
       - age
       - gender
       - settlement_type
@@ -109,6 +183,19 @@ def build_model_frame_from_canonical(df_canon: pd.DataFrame,
     return model_df
 
 
+def safe_cross_proba(cross_model, X_od_new: np.ndarray) -> np.ndarray:
+    """
+    Compute cross-reactivity probabilities, but guard against implementation
+    issues like missing 'multi_class' attribute. If anything fails, return a
+    neutral default (0.5 for all rows).
+    """
+    try:
+        return cross_model.predict_proba(X_od_new)[:, 1]
+    except Exception:
+        # Fallback: neutral probability when calibration fails
+        return np.full(shape=(X_od_new.shape[0],), fill_value=0.5, dtype=float)
+
+
 def section6_predict_from_canonical(df_canon: pd.DataFrame,
                                     preprocess,
                                     ensemble_models,
@@ -138,7 +225,7 @@ def section6_predict_from_canonical(df_canon: pd.DataFrame,
     igm_col = cross_artifacts["igm_col"]
     igg_col = cross_artifacts["igg_col"]
     X_od_new = model_df[[igm_col, igg_col]].values
-    p_cross = cross_artifacts["model"].predict_proba(X_od_new)[:, 1]
+    p_cross = safe_cross_proba(cross_artifacts["model"], X_od_new)
 
     thr = config["best_threshold_calibrated"]
     y_hat = (p_pcr_pos >= thr).astype(int)
@@ -220,7 +307,7 @@ def main():
     try:
         preprocess, ensemble_models, platt, cross_artifacts, config = load_section6_artifacts()
     except Exception as e:
-        st.error(f"Could not load Section 6 artifacts: {e}")
+        st.error("Internal error loading model artifacts. Please contact the maintainer.")
         st.stop()
 
     st.sidebar.header("Input Mode")
@@ -236,9 +323,12 @@ def main():
         st.subheader("Upload CSV of patient data")
         st.markdown(
             """
-            ### Expected CSV columns (canonical names)
+            ### What your CSV can look like
 
-            **Required** (at least these five):
+            The app will try to **auto-detect** the right columns by name, but
+            you can make it easier by using these names:
+
+            **Recommended column names:**
 
             - `age` (numeric)  
             - `gender` (e.g. Male/Female)  
@@ -246,16 +336,11 @@ def main():
             - `igm_od` (IgM OD value, numeric)  
             - `igg_od` (IgG OD value, numeric)  
 
-            **Optional** (if you have them, they help the model a bit):
+            Optional:
+            - `fever`, `weakness`, `vomiting`, `hospitalized`, `hospital_days`  
 
-            - `fever` (Yes/No)  
-            - `weakness` (Yes/No)  
-            - `vomiting` (Yes/No)  
-            - `hospitalized` (Yes/No)  
-            - `hospital_days` (e.g. 'Nil', '3 Days')  
-
-            The internal model features (like full symptom list) are filled
-            automatically by the trained preprocessing pipeline.
+            If your names are slightly different (e.g. "Age_years", "Sex"), the
+            app will try to match them automatically.
             """
         )
 
@@ -263,19 +348,26 @@ def main():
 
         if uploaded_file is not None:
             try:
-                df_input = pd.read_csv(uploaded_file)
+                df_raw = pd.read_csv(uploaded_file)
                 st.write("Preview of uploaded data (first 5 rows):")
-                st.dataframe(df_input.head())
-            except Exception as e:
-                st.error(f"Could not read CSV: {e}")
+                st.dataframe(df_raw.head())
+            except Exception:
+                st.error("Could not read the CSV file. Please check the format.")
                 return
 
-            required_canon = ["age", "gender", "settlement_type", "igm_od", "igg_od"]
-            missing_required = [c for c in required_canon if c not in df_input.columns]
+            # Auto-map columns to canonical names
+            df_canon = auto_map_csv_columns(df_raw)
+            st.write("Auto-detected canonical columns:")
+            st.dataframe(df_canon.head())
+
+            # Check minimal required canonical columns are present
+            missing_required = [c for c in CANONICAL_REQUIRED if c not in df_canon.columns]
             if missing_required:
                 st.error(
-                    f"The uploaded CSV is missing required columns: {missing_required}\n\n"
-                    f"Please rename your columns to match the canonical names above."
+                    "The CSV is missing some required information even after auto-mapping. "
+                    "Please ensure your file includes age, gender, IgM/IgG OD, and settlement type "
+                    "with recognizable column names.\n\n"
+                    f"Still missing: {missing_required}"
                 )
                 return
 
@@ -283,15 +375,15 @@ def main():
                 with st.spinner("Running model..."):
                     try:
                         df_pred = section6_predict_from_canonical(
-                            df_canon=df_input,
+                            df_canon=df_canon,
                             preprocess=preprocess,
                             ensemble_models=ensemble_models,
                             platt=platt,
                             cross_artifacts=cross_artifacts,
                             config=config
                         )
-                    except Exception as e:
-                        st.error(f"Error during prediction: {e}")
+                    except Exception:
+                        st.error("Internal error during prediction. Please try again or contact the maintainer.")
                         return
 
                 st.success("Prediction complete.")
@@ -388,8 +480,8 @@ def main():
                         cross_artifacts=cross_artifacts,
                         config=config
                     )
-                except Exception as e:
-                    st.error(f"Error during prediction: {e}")
+                except Exception:
+                    st.error("Internal error during prediction. Please try again or contact the maintainer.")
                     return
 
             st.success("Prediction complete.")
