@@ -2,6 +2,10 @@ import io
 import json
 from pathlib import Path
 
+import matplotlib
+
+matplotlib.use("Agg")  # required for Streamlit / headless servers (no GUI)
+
 import numpy as np
 import pandas as pd
 import joblib
@@ -28,8 +32,22 @@ plt.rcParams.update({
     "axes.labelsize": 11
 })
 
-MODELS_DIR = Path("models")
-REPORTS_DIR = Path("results/reports")
+# Repo root (parent of app/) so models load no matter which directory you run Streamlit from
+ROOT_DIR = Path(__file__).resolve().parent.parent
+MODELS_DIR = ROOT_DIR / "models"
+REPORTS_DIR = ROOT_DIR / "results" / "reports"
+
+
+def check_artifacts_exist() -> list[Path]:
+    """Return list of missing artifact paths (empty if all present)."""
+    required = [
+        MODELS_DIR / "section6_preprocess_drop.joblib",
+        MODELS_DIR / "section6_xgb_ensemble.joblib",
+        MODELS_DIR / "section6_platt_calibrator.joblib",
+        MODELS_DIR / "section6_cross_reactivity_model.joblib",
+        REPORTS_DIR / "section6_inference_config.json",
+    ]
+    return [p for p in required if not p.is_file()]
 
 # Canonical columns we expect from the user
 CANONICAL_REQUIRED = ["age", "gender", "settlement_type", "igm_od", "igg_od"]
@@ -307,11 +325,28 @@ def main():
         """
     )
 
-    # Load artifacts
+    missing = check_artifacts_exist()
+    if missing:
+        st.error(
+            "Model files are missing. The app expects these paths under the **project root** "
+            f"(`{ROOT_DIR}`):"
+        )
+        st.code("\n".join(str(p) for p in missing), language="text")
+        st.info(
+            "Fix: run the app from the cloned repo, or `git pull` so `models/` and "
+            "`results/reports/` match GitHub (Section 6 `.joblib` files must be present)."
+        )
+        st.stop()
+
     try:
         preprocess, ensemble_models, platt, cross_artifacts, config = load_section6_artifacts()
-    except Exception:
-        st.error("Internal error loading model artifacts. Please check the models/ and results/ folders.")
+    except Exception as e:
+        st.error(
+            "Could not load model artifacts (sklearn/xgboost version mismatch is common). "
+            "Use the same `requirements.txt` versions as training, or re-export the models."
+        )
+        with st.expander("Technical details"):
+            st.exception(e)
         st.stop()
 
     st.sidebar.header("Input Mode")
@@ -411,7 +446,8 @@ def main():
 
             st.markdown("### Patient risk card")
             fig_card = plot_single_patient_card(patient_row, thr)
-            st.pyplot(fig_card)
+            st.pyplot(fig_card, clear_figure=True)
+            plt.close(fig_card)
             png_card = fig_to_png_bytes(fig_card)
             st.download_button(
                 label="Download patient card as PNG",
@@ -424,10 +460,12 @@ def main():
             colv1, colv2 = st.columns(2)
             with colv1:
                 fig1 = plot_pcr_distribution(df_pred, "p_pcr_pos for this patient")
-                st.pyplot(fig1)
+                st.pyplot(fig1, clear_figure=True)
+                plt.close(fig1)
             with colv2:
                 fig2 = plot_cross_vs_pcr(df_pred, "p_pcr_pos vs p_cross_reactive (this patient)", thr)
-                st.pyplot(fig2)
+                st.pyplot(fig2, clear_figure=True)
+                plt.close(fig2)
 
     # -------------------------------------------------------------------------
     # CSV MODE (ADVANCED)
@@ -515,10 +553,12 @@ def main():
 
                 with col1:
                     fig1 = plot_pcr_distribution(df_pred, "Distribution of p_pcr_pos (uploaded data)")
-                    st.pyplot(fig1)
+                    st.pyplot(fig1, clear_figure=True)
+                    plt.close(fig1)
                 with col2:
                     fig2 = plot_cross_vs_pcr(df_pred, "p_pcr_pos vs p_cross_reactive (uploaded data)", thr)
-                    st.pyplot(fig2)
+                    st.pyplot(fig2, clear_figure=True)
+                    plt.close(fig2)
 
     # -------------------------------------------------------------------------
     # FOOTER / DISCLAIMER
