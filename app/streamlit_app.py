@@ -139,8 +139,8 @@ def build_model_frame_from_canonical(df_canon: pd.DataFrame,
     categorical_cols = config["columns"]["categorical"]
     expected_cols = numeric_cols + categorical_cols
 
-    model_df = pd.DataFrame(columns=expected_cols)
-    model_df.loc[0:len(df_canon) - 1] = np.nan
+    n = len(df_canon)
+    model_df = pd.DataFrame(np.nan, index=range(n), columns=expected_cols)
 
     # Map canonical → model feature names (all from your training data)
     canon_to_model = {
@@ -433,8 +433,10 @@ def main():
                         cross_artifacts=cross_artifacts,
                         config=config
                     )
-                except Exception:
-                    st.error("Internal error during prediction. Please try again or contact the maintainer.")
+                except Exception as e:
+                    st.error("Prediction failed. Common causes: wrong package versions, or CSV/value types the preprocessor cannot handle.")
+                    with st.expander("Technical details (copy this if asking for help)"):
+                        st.exception(e)
                     return
 
             st.success("Prediction complete.")
@@ -446,9 +448,10 @@ def main():
 
             st.markdown("### Patient risk card")
             fig_card = plot_single_patient_card(patient_row, thr)
+            # Save PNG before plt.close — closed figures cannot be saved
+            png_card = fig_to_png_bytes(fig_card)
             st.pyplot(fig_card, clear_figure=True)
             plt.close(fig_card)
-            png_card = fig_to_png_bytes(fig_card)
             st.download_button(
                 label="Download patient card as PNG",
                 data=png_card,
@@ -523,8 +526,10 @@ def main():
                             cross_artifacts=cross_artifacts,
                             config=config
                         )
-                    except Exception:
-                        st.error("Internal error during prediction. Please try again or contact the maintainer.")
+                    except Exception as e:
+                        st.error("Prediction failed. Check column types (e.g. numeric `age`, `igm_od`, `igg_od`) and `pip install -r requirements.txt`.")
+                        with st.expander("Technical details (copy this if asking for help)"):
+                            st.exception(e)
                         return
 
                 st.success("Prediction complete.")
