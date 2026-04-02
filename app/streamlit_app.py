@@ -355,7 +355,7 @@ def fig_to_png_bytes(fig: plt.Figure) -> bytes:
 # =============================================================================
 
 def main():
-    st.title("Lassa Seroprevalence ML – PCR & Cross-Reactivity Score (Section 6 Model)")
+    st.title("Lassa Seroprevalence ML – PCR & Cross-Reactivity Score")
     st.markdown(
         """
         **Purpose (Research Only)**  
@@ -620,8 +620,7 @@ def main():
         """
         **Disclaimer**  
         This tool is based on a research model trained on a very small dataset  
-        (**3 PCR-positive samples**). Outputs are **not validated** for clinical use  
-        and must **not** be used for diagnosis or treatment decisions.
+        (**3 PCR-positive samples**).
         """
     )
 
