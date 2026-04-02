@@ -94,6 +94,52 @@ def patch_logistic_regression(lr):
     return lr
 
 
+def patch_sklearn_column_transformer_compat(estimator):
+    """
+    Preprocessors saved with scikit-learn < 1.4 lack ColumnTransformer._name_to_fitted_passthrough,
+    which sklearn >= 1.4 uses in transform(). Patch after joblib.load when using a newer sklearn.
+
+    If transformers_ still contains the string 'passthrough', pair it with a FunctionTransformer
+    (same pattern sklearn uses internally) so transform() does not receive a bare string.
+    """
+    try:
+        from sklearn.compose import ColumnTransformer
+        from sklearn.pipeline import Pipeline
+        from sklearn.preprocessing import FunctionTransformer
+    except ImportError:
+        return
+
+    seen: set[int] = set()
+
+    def walk(obj):
+        oid = id(obj)
+        if oid in seen:
+            return
+        seen.add(oid)
+
+        if isinstance(obj, ColumnTransformer):
+            if not hasattr(obj, "_name_to_fitted_passthrough"):
+                obj._name_to_fitted_passthrough = {}
+            passthrough_map = obj._name_to_fitted_passthrough
+            for item in getattr(obj, "transformers_", None) or []:
+                if len(item) < 2:
+                    continue
+                name, sub = item[0], item[1]
+                if sub == "passthrough" and name not in passthrough_map:
+                    passthrough_map[name] = FunctionTransformer(
+                        accept_sparse=True,
+                        check_inverse=False,
+                        feature_names_out="one-to-one",
+                    )
+                if sub not in (None, "drop", "passthrough"):
+                    walk(sub)
+        elif isinstance(obj, Pipeline):
+            for _, step in obj.steps:
+                walk(step)
+
+    walk(estimator)
+
+
 # =============================================================================
 # LOAD SECTION 6 ARTIFACTS (WITH PATCHES)
 # =============================================================================
@@ -102,6 +148,7 @@ def patch_logistic_regression(lr):
 def load_section6_artifacts():
     """Load all artifacts saved from Section 6 and patch LR models."""
     preprocess = joblib.load(MODELS_DIR / "section6_preprocess_drop.joblib")
+    patch_sklearn_column_transformer_compat(preprocess)
     ensemble_models = joblib.load(MODELS_DIR / "section6_xgb_ensemble.joblib")
     platt = joblib.load(MODELS_DIR / "section6_platt_calibrator.joblib")
     cross_artifacts = joblib.load(MODELS_DIR / "section6_cross_reactivity_model.joblib")
