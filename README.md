@@ -136,7 +136,7 @@ Thresholds and column metadata are defined in **`results/reports/section6_infere
 
 ## Ethics, limitations, and non-clinical use
 
-- Outputs are **exploratory** and based on a **small PCR-positive count** in training. They are **not** validated for diagnosis, treatment, or public-health action.
+- Outputs are **exploratory** and based on a **small PCR-positive count** in training. 
 - Any real-world use requires appropriate **governance**, **IRB or equivalent ethics review**, and **local validation** on representative data.
 - Do not present probabilities as clinical risk without clear uncertainty communication.
 
