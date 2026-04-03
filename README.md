@@ -148,10 +148,4 @@ If you use this repository or the hosted app in academic or policy work, please 
 
 ---
 
-## Licence
-
-Add your licence file (e.g. `LICENSE`) and describe terms here if you distribute the code or models beyond private research use.
-
----
-
-*README structured for clarity, reproducibility, and alignment with the deployed Streamlit experience at the URL above.*
+*README structured for clarity, reproducibility, and alignment with the deployed Streamlit experience at the URL above.* _ìlegend_
