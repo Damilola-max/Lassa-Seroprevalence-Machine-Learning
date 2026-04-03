@@ -9,9 +9,7 @@ This repository brings together **seroprevalence survey data**, **laboratory opt
 The Streamlit application lets you enter a single patient (or upload a cohort CSV) and obtain model scores, plots, and downloadable outputs—without running code locally.
 
 **Live deployment (Streamlit Community Cloud):**  
-[https://damilola-max-lassa-seroprevalence-machi-appstreamlit-app-tlsrd0.streamlit.app](https://damilola-max-lassa-seroprevalence-machi-appstreamlit-app-tlsrd0.streamlit.app)
-
-If the URL changes after you redeploy the app, update the link in your GitHub **About** section and in this README so collaborators always land on the current instance.
+[https://damilola-max-lassa-seroprevalence-machine-learning](https://damilola-max-lassa-seroprevalence-machi-appstreamlit-app-9slxr7.streamlit.app)
 
 ---
 
